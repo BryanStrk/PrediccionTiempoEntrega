@@ -29,6 +29,14 @@ public class Main {
         Formula formula = Formula.lhs("tiempo");
         //Entrenar modelo de regresion lineal (OLS)
         LinearModel modelo = OLS.fit(formula,  entregas);
-
+        // Nuevo pedido de 7 km
+        double distanciaNueva = 7.0;
+        double[] nuevoPedido = {distanciaNueva};
+        // Realizar prediccion
+        double tiempoEstimado = modelo.predict(nuevoPedido);
+        // Mostrar resultado
+        System.out.println("===== PREDICCIÓN DE ENTREGA =====");
+        System.out.println("Distancia del pedido: " + distanciaNueva + " km");
+        System.out.printf("Tiempo estimado de entrega: %.2f minutos%n", tiempoEstimado);
     }
 }
