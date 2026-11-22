@@ -5,10 +5,13 @@ import smile.data.formula.Formula;
 import smile.regression.LinearModel;
 import smile.regression.OLS;
 
+import java.util.Scanner;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main() {
+        Scanner teclado = new Scanner(System.in);
         // Datos: {distancia_km, tiempo_entrega_min}
         double[][] datos={
                 {2,10},
@@ -30,7 +33,12 @@ public class Main {
         //Entrenar modelo de regresion lineal (OLS)
         LinearModel modelo = OLS.fit(formula,  entregas);
         // Nuevo pedido de 7 km
-        double distanciaNueva = 7.0;
+//        double distanciaNueva = 7.0;
+//        double[] nuevoPedido = {distanciaNueva};
+        // Solicitar distancia al usuario
+        System.out.print("Ingrese la distancia del pedido (km): ");
+        double distanciaNueva = teclado.nextDouble();
+        // Nuevo pedido
         double[] nuevoPedido = {distanciaNueva};
         // Realizar prediccion
         double tiempoEstimado = modelo.predict(nuevoPedido);
@@ -38,5 +46,6 @@ public class Main {
         System.out.println("===== PREDICCIÓN DE ENTREGA =====");
         System.out.println("Distancia del pedido: " + distanciaNueva + " km");
         System.out.printf("Tiempo estimado de entrega: %.2f minutos%n", tiempoEstimado);
+        teclado.close();
     }
 }
